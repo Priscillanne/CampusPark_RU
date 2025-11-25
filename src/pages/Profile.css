@@ -1,0 +1,494 @@
+import React, { useState, useRef } from 'react';
+import {
+  IonPage,
+  IonContent,
+  IonCard,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonButton,
+  IonAvatar,
+  IonIcon,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonButtons,
+  IonBackButton
+} from '@ionic/react';
+import { camera, save, close, person } from 'ionicons/icons';
+
+const ProfilePage: React.FC = () => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [profile, setProfile] = useState({
+    name: 'John Doe',
+    email: 'john.doe@raffles.edu',
+    studentId: 'RU2024001',
+    phone: '+1 234 567 8900',
+    carPlate: 'ABC123'
+  });
+  
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+    // Save logic would go here
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    // Reset form logic would go here
+  };
+
+  const handleImageClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // Handle image upload logic here
+      console.log('Selected file:', file);
+    }
+  };
+
+  const styles = `
+    .profile-container {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+    }
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .profile-title {
+      color: white;
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+    }
+
+    .profile-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .profile-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        0 8px 32px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #FFD700, #F97316, #667eea);
+    }
+
+    .profile-image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
+      border: 4px solid #F97316;
+      box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+      background: linear-gradient(135deg, #FFD700, #F97316);
+    }
+
+    .profile-avatar-inner {
+      background: rgba(255, 255, 255, 0.9);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-icon {
+      font-size: 3rem;
+      color: #F97316;
+    }
+
+    .edit-image-button {
+      position: absolute;
+      bottom: 5px;
+      right: calc(50% - 70px);
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      --padding-start: 0;
+      --padding-end: 0;
+      --box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .edit-image-button:hover {
+      transform: scale(1.1);
+      --box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    }
+
+    .profile-field {
+      margin-bottom: 20px;
+      --background: rgba(255, 255, 255, 0.8);
+      --border-radius: 12px;
+      --padding-start: 16px;
+      --padding-end: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .profile-field:hover {
+      --background: rgba(255, 255, 255, 0.9);
+      border-color: #667eea;
+    }
+
+    .profile-label {
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .profile-input {
+      --padding-start: 0;
+      --padding-end: 0;
+      --background: transparent;
+      font-size: 1rem;
+      color: #1a1a1a;
+    }
+
+    .profile-value {
+      color: #666;
+      font-size: 1rem;
+      padding: 12px 0;
+    }
+
+    .profile-buttons {
+      margin-top: 30px;
+    }
+
+    .edit-button {
+      --background: linear-gradient(135deg, #667eea, #764ba2);
+      --border-radius: 12px;
+      --padding-top: 16px;
+      --padding-bottom: 16px;
+      --box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .edit-button:hover {
+      --box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .save-cancel-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .save-button {
+      --background: linear-gradient(135deg, #10B981, #059669);
+      --border-radius: 12px;
+      --padding-top: 16px;
+      --padding-bottom: 16px;
+      --box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+      font-weight: 600;
+    }
+
+    .cancel-button {
+      --background: linear-gradient(135deg, #EF4444, #DC2626);
+      --border-radius: 12px;
+      --padding-top: 16px;
+      --padding-bottom: 16px;
+      --box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+      font-weight: 600;
+    }
+
+    .save-button:hover, .cancel-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .save-button:hover {
+      --box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
+    }
+
+    .cancel-button:hover {
+      --box-shadow: 0 8px 25px rgba(239, 68, 68, 0.6);
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    .floating-shapes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .shape-1 {
+      width: 60px;
+      height: 60px;
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .shape-2 {
+      width: 100px;
+      height: 100px;
+      top: 60%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    .shape-3 {
+      width: 80px;
+      height: 80px;
+      bottom: 20%;
+      left: 15%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    @media (max-width: 480px) {
+      .profile-container {
+        padding: 15px;
+      }
+      
+      .profile-card {
+        padding: 20px;
+      }
+      
+      .save-cancel-buttons {
+        grid-template-columns: 1fr;
+      }
+    }
+  `;
+
+  // Inject styles
+  if (typeof document !== 'undefined') {
+    const styleTag = document.createElement('style');
+    styleTag.innerHTML = styles;
+    document.head.appendChild(styleTag);
+  }
+
+  return (
+    <IonPage>
+      <IonHeader>
+        <IonToolbar color="primary">
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/home" />
+          </IonButtons>
+          <IonTitle>Profile</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+
+      <IonContent>
+        <div className="profile-container">
+          {/* Floating Background Shapes */}
+          <div className="floating-shapes">
+            <div className="shape shape-1"></div>
+            <div className="shape shape-2"></div>
+            <div className="shape shape-3"></div>
+          </div>
+
+          {/* Profile Header */}
+          <div className="profile-header">
+            <h1 className="profile-title">My Profile</h1>
+            <p className="profile-subtitle">Manage your account information</p>
+          </div>
+
+          {/* Profile Card */}
+          <div className="profile-card">
+            {/* Profile Image */}
+            <div className="profile-image-container">
+              <IonAvatar className="profile-avatar">
+                <div className="profile-avatar-inner">
+                  <IonIcon icon={person} className="profile-icon" />
+                </div>
+              </IonAvatar>
+              
+              <IonButton 
+                className="edit-image-button"
+                onClick={handleImageClick}
+                fill="solid"
+              >
+                <IonIcon icon={camera} />
+              </IonButton>
+              
+              <input
+                type="file"
+                ref={fileInputRef}
+                className="file-input"
+                accept="image/*"
+                onChange={handleFileChange}
+              />
+            </div>
+
+            {/* Profile Fields */}
+            <div className="profile-fields">
+              {/* Name Field */}
+              <div className="profile-field">
+                <IonLabel className="profile-label">Full Name</IonLabel>
+                {isEditing ? (
+                  <IonInput
+                    className="profile-input"
+                    value={profile.name}
+                    onIonInput={(e) => setProfile({...profile, name: e.detail.value!})}
+                    placeholder="Enter your full name"
+                  />
+                ) : (
+                  <div className="profile-value">{profile.name}</div>
+                )}
+              </div>
+
+              {/* Email Field */}
+              <div className="profile-field">
+                <IonLabel className="profile-label">Email</IonLabel>
+                {isEditing ? (
+                  <IonInput
+                    className="profile-input"
+                    value={profile.email}
+                    onIonInput={(e) => setProfile({...profile, email: e.detail.value!})}
+                    type="email"
+                    placeholder="Enter your email"
+                  />
+                ) : (
+                  <div className="profile-value">{profile.email}</div>
+                )}
+              </div>
+
+              {/* Student ID Field */}
+              <div className="profile-field">
+                <IonLabel className="profile-label">Student ID</IonLabel>
+                {isEditing ? (
+                  <IonInput
+                    className="profile-input"
+                    value={profile.studentId}
+                    onIonInput={(e) => setProfile({...profile, studentId: e.detail.value!})}
+                    placeholder="Enter your student ID"
+                  />
+                ) : (
+                  <div className="profile-value">{profile.studentId}</div>
+                )}
+              </div>
+
+              {/* Phone Field */}
+              <div className="profile-field">
+                <IonLabel className="profile-label">Phone Number</IonLabel>
+                {isEditing ? (
+                  <IonInput
+                    className="profile-input"
+                    value={profile.phone}
+                    onIonInput={(e) => setProfile({...profile, phone: e.detail.value!})}
+                    type="tel"
+                    placeholder="Enter your phone number"
+                  />
+                ) : (
+                  <div className="profile-value">{profile.phone}</div>
+                )}
+              </div>
+
+              {/* Car Plate Field */}
+              <div className="profile-field">
+                <IonLabel className="profile-label">Car Plate</IonLabel>
+                {isEditing ? (
+                  <IonInput
+                    className="profile-input"
+                    value={profile.carPlate}
+                    onIonInput={(e) => setProfile({...profile, carPlate: e.detail.value!})}
+                    placeholder="Enter your car plate"
+                  />
+                ) : (
+                  <div className="profile-value">{profile.carPlate}</div>
+                )}
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="profile-buttons">
+              {!isEditing ? (
+                <IonButton 
+                  className="edit-button"
+                  expand="block"
+                  onClick={handleEditClick}
+                >
+                  <IonIcon icon={camera} slot="start" />
+                  Edit Profile
+                </IonButton>
+              ) : (
+                <div className="save-cancel-buttons">
+                  <IonButton 
+                    className="cancel-button"
+                    expand="block"
+                    onClick={handleCancel}
+                  >
+                    <IonIcon icon={close} slot="start" />
+                    Cancel
+                  </IonButton>
+                  <IonButton 
+                    className="save-button"
+                    expand="block"
+                    onClick={handleSave}
+                  >
+                    <IonIcon icon={save} slot="start" />
+                    Save Changes
+                  </IonButton>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </IonContent>
+    </IonPage>
+  );
+};
+
+export default ProfilePage;

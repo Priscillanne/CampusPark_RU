@@ -1,0 +1,564 @@
+/* LogoPage.css */
+.logo-page-content {
+  position: relative;
+  overflow: hidden;
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+/* Enhanced Animated Background */
+.animated-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: float 6s ease-in-out infinite;
+  backdrop-filter: blur(5px);
+}
+
+.shape-1 {
+  width: 120px;
+  height: 120px;
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+  background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(249, 115, 22, 0.2));
+}
+
+.shape-2 {
+  width: 180px;
+  height: 180px;
+  top: 60%;
+  right: 5%;
+  animation-delay: 2s;
+  background: linear-gradient(45deg, rgba(255, 107, 107, 0.2), rgba(255, 193, 7, 0.2));
+}
+
+.shape-3 {
+  width: 100px;
+  height: 100px;
+  bottom: 20%;
+  left: 15%;
+  animation-delay: 4s;
+  background: linear-gradient(45deg, rgba(77, 208, 225, 0.2), rgba(129, 199, 132, 0.2));
+}
+
+.shape-4 {
+  width: 150px;
+  height: 150px;
+  top: 20%;
+  right: 15%;
+  animation-delay: 1s;
+  background: linear-gradient(45deg, rgba(156, 39, 176, 0.2), rgba(233, 30, 99, 0.2));
+}
+
+.parking-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  opacity: 0.1;
+}
+
+.grid-cell {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: gridPulse 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg) scale(1); 
+  }
+  50% { 
+    transform: translateY(-30px) rotate(180deg) scale(1.1); 
+  }
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+}
+
+/* Main Container */
+.main-container {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Enhanced Logo Container */
+.logo-container {
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.logo-wrapper {
+  position: relative;
+  margin-bottom: 3rem;
+  display: inline-block;
+}
+
+.logo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.parking-symbol {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background: linear-gradient(135deg, #FFD700, #F97316);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: symbolPulse 2s infinite, rotate 4s linear infinite;
+  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.6);
+  z-index: 3;
+}
+
+.parking-p {
+  color: white;
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.parking-line {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 35px;
+  height: 4px;
+  background: white;
+  border-radius: 2px;
+}
+
+.signal-dots {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 3px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ADE80;
+  animation: signalWave 1.5s ease-in-out infinite;
+}
+
+.dot-1 { animation-delay: 0s; }
+.dot-2 { animation-delay: 0.5s; }
+.dot-3 { animation-delay: 1s; }
+
+.main-logo {
+  width: 180px;
+  height: 180px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  padding: 25px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+.logo-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: 220px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 40px;
+  animation: ringRotate 8s linear infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@keyframes symbolPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(5deg); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ringRotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes signalWave {
+  0%, 100% { transform: translateY(0px); opacity: 0.3; }
+  50% { transform: translateY(-10px); opacity: 1; }
+}
+
+/* Enhanced Title Section */
+.title-section {
+  margin-bottom: 3rem;
+}
+
+.app-title h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(45deg, #FFD700, #F97316, #FF6B6B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+}
+
+.title-glow {
+  position: relative;
+  display: inline-block;
+}
+
+.title-underline {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #FFD700, #F97316);
+  margin: 0 auto;
+  border-radius: 2px;
+  animation: underlineSlide 3s ease-in-out infinite;
+}
+
+.app-subtitle p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin: 1rem 0 0 0;
+  font-weight: 300;
+  letter-spacing: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes underlineSlide {
+  0%, 100% { transform: scaleX(0.8); opacity: 0.7; }
+  50% { transform: scaleX(1.2); opacity: 1; }
+}
+
+/* Enhanced Loading Section */
+.loading-section {
+  margin-bottom: 3rem;
+}
+
+.progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.progress-container {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4ADE80, #F97316, #FFD700);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  position: relative;
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.6);
+}
+
+.progress-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: progressShine 2s ease-in-out infinite;
+}
+
+.progress-text {
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-width: 40px;
+}
+
+.loading-text p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+.loading-spinner {
+  color: #F97316;
+  --color: #F97316;
+  margin-top: 0.5rem;
+}
+
+@keyframes progressShine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Enhanced Parking Indicators */
+.parking-indicators {
+  margin-bottom: 2rem;
+}
+
+.indicator-card {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  padding: 1.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.indicator:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.indicator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+.available .indicator-dot {
+  background: #4ADE80;
+  box-shadow: 0 0 10px #4ADE80;
+}
+
+.occupied .indicator-dot {
+  background: #F87171;
+  box-shadow: 0 0 10px #F87171;
+}
+
+.reserved .indicator-dot {
+  background: #FBBF24;
+  box-shadow: 0 0 10px #FBBF24;
+}
+
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.feature-item:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.feature-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Enhanced Footer */
+.footer {
+  position: absolute;
+  bottom: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.footer-content {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: inline-block;
+}
+
+.footer-text {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.footer-highlight {
+  color: #FFD700;
+  font-weight: 600;
+}
+
+.footer-subtext {
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+.footer-copyright {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* Floating Elements */
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-car, .floating-parking, .floating-location {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatElement 8s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+.floating-car {
+  top: 15%;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.floating-parking {
+  bottom: 25%;
+  left: 8%;
+  animation-delay: 2s;
+}
+
+.floating-location {
+  top: 40%;
+  right: 20%;
+  animation-delay: 4s;
+}
+
+@keyframes floatElement {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-20px) rotate(5deg); }
+  66% { transform: translateY(10px) rotate(-5deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-title h1 {
+    font-size: 2.2rem;
+  }
+  
+  .main-logo {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .parking-symbol {
+    width: 60px;
+    height: 60px;
+    top: -10px;
+    right: -10px;
+  }
+  
+  .indicator-card {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .progress-wrapper {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .progress-text {
+    order: -1;
+  }
+}

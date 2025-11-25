@@ -1,0 +1,2 @@
+- [ ] Delete pages/BookingPage.tsx
+- [ ] Remove BookingPage import and route from App.tsx
