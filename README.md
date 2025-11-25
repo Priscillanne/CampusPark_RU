@@ -36,98 +36,86 @@
 - npm or yarn
 - Firebase account
 
+# Firebase Project Documentation
+
+## Project Overview
+This project uses Firebase as the backend service for managing various data entities including bookings, classrooms, parking, users, and zones.
+
+## Firebase Collections
+
+The project utilizes the following Firebase Firestore collections:
+
+### Core Collections
+
+#### **bookings**
+- General booking system for reservations
+- Handles appointment and resource scheduling
+
+#### **classrooms**
+- Manages classroom information and availability
+- Tracks educational space resources
+
+#### **parkingBookings**
+- Parking reservation management system
+- Handles parking spot bookings and scheduling
+
+#### **parkingSlots**
+- Database of available parking spaces
+- Manages parking slot inventory and status
+
+#### **penaltyPayments**
+- Tracks penalty charges and payments
+- Manages fine collection and payment records
+
+#### **sessions**
+- User session management
+- Tracks active sessions and authentication states
+
+#### **users**
+- User account management
+- Stores user profiles and authentication data
+
+### Zone Management
+
+#### **zone** (singular)
+- Individual zone configuration
+- Zone-specific settings and properties
+
+#### **zones** (plural)
+- Comprehensive zone management
+- Collection of all available zones
+
+
+### Authentication
+- User authentication handled through Firebase Auth
+- Session management integrated with Firestore
+
+## Setup Instructions
+
+### Prerequisites
+- Firebase project configured
+- Firestore database initialized
+- Authentication enabled (if required)
+
 ### Installation
+1. Clone the repository
+2. Install Firebase SDK
+3. Configure Firebase credentials
+4. Initialize Firestore connection
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/your-username/smart-campus-parking.git
-cd smart-campus-parking
+### Environment Variables
+```javascript
+// Firebase configuration
+  apiKey: "AIzaSyADkPx2syGdRD08m4nE5SnLbNfDnW58jOs",
+  authDomain: "campuspark-ru.firebaseapp.com",
+  projectId: "campuspark-ru",
+  storageBucket: "campuspark-ru.firebasestorage.app",
+  messagingSenderId: "791070736327",
+  appId: "1:791070736327:web:2371d7406a55f6ffbea3e2",
+  measurementId: "G-6FJWF2J8D9"
+};
 
-Install dependencies
-
-bash
-npm install
-Firebase Configuration
-
-Create a new Firebase project
-
-Enable Authentication (Email/Password)
-
-Create Firestore Database
-
-Copy your Firebase config to src/firebaseConfig.ts
-
-Run the development server
-
-bash
-ionic serve
-
-1) Project Structure
-text
-src/
-├── components/          # Reusable UI components
-├── pages/              # Main application pages
-│   ├── booking/        # Parking booking system
-│   ├── sessions/       # User session management
-│   ├── zones/          # Zone selection and management
-│   └── auth/           # Authentication pages
-├── services/           # Firebase services and APIs
-├── hooks/              # Custom React hooks
-├── utils/              # Utility functions
-└── models/             # TypeScript interfaces
-2) Pages Overview
-2.1) Home & Booking Flow
-Zone Selection - Choose from available parking zones (A-F)
-
-Slot Booking - Select specific parking slots with real-time availability
-
-Time Selection - Choose booking duration and time slots
-
-Confirmation - Booking summary and confirmation
-
-2.2) User Sessions
-Active Sessions - Current and upcoming parking bookings
-
-Session History - Past parking sessions with details
-
-Edit Bookings - Modify existing bookings (time, zone, slot)
-
-Delete Bookings - Cancel upcoming reservations
-
-2.3) Management
-User Profile - Manage personal information and vehicle details
-
-Admin Dashboard - System overview and management (admin only)
-
-Settings - Application preferences and notifications
-
-2.4) Technical Stack
-Frontend
-React 18 - UI library
-
-Ionic Framework 6 - Mobile-first UI components
-
-TypeScript - Type-safe development
-
-React Router - Navigation and routing
-
-Backend & Database
-Firebase Authentication - User management and security
-
-Cloud Firestore - Real-time database
-
-Firebase Hosting - Deployment platform
-
-Key Libraries
-a) @ionic/react - UI components
-b) firebase - Backend services
-c) date-fns - Date manipulation
-d) react-router-dom - Routing
-
-
-### Database schema for parking management system
-- Copy paste this code below in the Firebase Firestore.
-
+### FIREBASE TABLE UPDATING
 -- Users table (existing)
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
